@@ -10,7 +10,13 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+protocol CollectionViewControllerDelegate: NSObjectProtocol {
+    func tapImage(image: UIImage, text: String)
+}
+
 class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    weak var delegate: CollectionViewControllerDelegate?
     
     // サムネイム画像の名前
     let brands = ["越乃寒梅", "八海山", "吉乃川", "菊水", "加賀の井", "景虎", "久保田", "鶴齢"]
@@ -41,23 +47,15 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     // Cell が選択された場合
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // [indexPath.row] から画像名を探し、UImage を設定
+        // [indexPath.row] から画像名を探し、UImageを設定
         let selectedImage = UIImage(named: brands[indexPath.row])
+        let selectedText = brands[indexPath.row]
         if selectedImage != nil {
-            // SubViewController へ遷移するために Segue を呼び出す
-            navigationController?.popViewController(animated: false)
+            delegate?.tapImage(image: selectedImage!, text: selectedText)
+            navigationController?.popViewController(animated: true)
         }
         
     }
-    
-//    // Segue 準備
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-//        if (segue.identifier == "toSubViewController") {
-//            let formV: FormController = (segue.destination as? FormController)!
-//            // SubViewController のselectedImgに選択された画像を設定する
-//            formV.selectedImg = selectedImage
-//        }
-//    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // section数は１つ

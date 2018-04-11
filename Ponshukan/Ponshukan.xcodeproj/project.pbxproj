@@ -15,6 +15,8 @@
 		07100D502069EA97002AD661 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07100D4F2069EA97002AD661 /* FormController.swift */; };
 		07790734206A0162001A5B57 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07790733206A0162001A5B57 /* RatingControl.swift */; };
 		07790736206BC092001A5B57 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07790735206BC092001A5B57 /* CollectionViewController.swift */; };
+		07FDF5C52075E3C20083A666 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FDF5C42075E3C20083A666 /* RatingViewController.swift */; };
+		07FDF5C72075E58D0083A666 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FDF5C62075E58D0083A666 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		07100D4F2069EA97002AD661 /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
 		07790733206A0162001A5B57 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		07790735206BC092001A5B57 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		07FDF5C42075E3C20083A666 /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		07FDF5C62075E58D0083A666 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +64,14 @@
 		07100D3A20639A5A002AD661 /* Ponshukan */ = {
 			isa = PBXGroup;
 			children = (
-				07790733206A0162001A5B57 /* RatingControl.swift */,
 				07100D3B20639A5A002AD661 /* AppDelegate.swift */,
+				07790733206A0162001A5B57 /* RatingControl.swift */,
+				07FDF5C42075E3C20083A666 /* RatingViewController.swift */,
 				07100D3D20639A5A002AD661 /* ViewController.swift */,
 				07790735206BC092001A5B57 /* CollectionViewController.swift */,
 				07100D4F2069EA97002AD661 /* FormController.swift */,
 				07100D3F20639A5A002AD661 /* Main.storyboard */,
+				07FDF5C62075E58D0083A666 /* CustomTableViewCell.swift */,
 				07100D4220639A5A002AD661 /* Assets.xcassets */,
 				07100D4420639A5A002AD661 /* LaunchScreen.storyboard */,
 				07100D4720639A5A002AD661 /* Info.plist */,
@@ -100,7 +106,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = MSTK;
 				TargetAttributes = {
 					07100D3720639A5A002AD661 = {
@@ -148,6 +154,8 @@
 				07790734206A0162001A5B57 /* RatingControl.swift in Sources */,
 				07100D502069EA97002AD661 /* FormController.swift in Sources */,
 				07100D3E20639A5A002AD661 /* ViewController.swift in Sources */,
+				07FDF5C72075E58D0083A666 /* CustomTableViewCell.swift in Sources */,
+				07FDF5C52075E3C20083A666 /* RatingViewController.swift in Sources */,
 				07100D3C20639A5A002AD661 /* AppDelegate.swift in Sources */,
 				07790736206BC092001A5B57 /* CollectionViewController.swift in Sources */,
 			);
@@ -189,6 +197,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -196,6 +205,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -246,6 +256,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -253,6 +264,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -287,6 +299,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9P4VQ4YNA5;
 				INFOPLIST_FILE = Ponshukan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mstk.Ponshukan;
@@ -301,6 +314,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9P4VQ4YNA5;
 				INFOPLIST_FILE = Ponshukan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mstk.Ponshukan;

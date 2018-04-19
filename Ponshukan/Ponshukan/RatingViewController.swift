@@ -11,30 +11,30 @@ import UIKit
 @IBDesignable class RatingViewController: UIStackView {
     
     // プロパティ
-    private var ratingButtons = [UIButton]()
+    private var ratingView = [UIImageView]()
     
     var rating = 0 {
         didSet {
-            updateButtonSelectionStates()
+            setupViews()
         }
     }
     
-    @IBInspectable var starSize: CGSize = CGSize(width: 28.0, height: 28.0) {
+    @IBInspectable var starSize: CGSize = CGSize(width: 14.0, height: 14.0) {
         didSet {
-            setupButtons()
+            setupViews()
         }
     }
     @IBInspectable var starCount: Int = 5 {
         didSet {
-            setupButtons()
+            setupViews()
         }
     }
     
     // 初期化
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupButtons()
-        spacing = 4.0
+        setupViews()
+        spacing = 1.0
         axis = .horizontal
         alignment = .center
         distribution = .equalCentering
@@ -42,94 +42,58 @@ import UIKit
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
-        setupButtons()
-    }
-    
-    // ボタンを押した時
-    @objc func ratingButtonTapped(button: UIButton) {
-        guard let index = ratingButtons.index(of: button) else {
-            fatalError("The Button, \(button), is not in the ratingButtons array: \(ratingButtons)")
-        }
-        
-        // 選択された星の数を計算
-        let selectedRating = index + 1
-        
-        if selectedRating == rating {
-            // 同じボタン押したら星の数を０にする
-            rating = 0
-        } else {
-            // 選択した星の数にする
-            rating = selectedRating
-        }
+        setupViews()
     }
     
     // プライベートメソッド
-    private func setupButtons() {
+    private func setupViews() {
         
         // 消す
-        for button in ratingButtons {
-            removeArrangedSubview(button)
-            button.removeFromSuperview()
+        for label in ratingView {
+            removeArrangedSubview(label)
+            label.removeFromSuperview()
         }
-        ratingButtons.removeAll()
+        ratingView.removeAll()
         
-        // ボタン画像のロード
+        // 画像のロード
         let bundle = Bundle(for: type(of: self))
         let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
         let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: self.traitCollection)
-        let highlightedStar = UIImage(named: "highlightedStar", in: bundle, compatibleWith: self.traitCollection)
         
-        for _ in 0..<starCount {
-            // ボタンの作成
-            let button = UIButton()
+        for _ in 0..<rating {
+            // ラベルの作成
+            let view = UIImageView()
             
             // 画像をセット
-            button.setImage(emptyStar, for: .normal)
-            button.setImage(filledStar, for: .selected)
-            button.setImage(highlightedStar, for: .highlighted)
-            button.setImage(highlightedStar, for: [.highlighted, .selected])
-            
-            // Add constraints
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
-            button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
-            
-            // ボタンのセットアップ
-            button.addTarget(self, action: #selector(RatingControl.ratingButtonTapped(button:)), for: .touchUpInside)
+            view.image = filledStar
+        
+            // 制約追加
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
+            view.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
             
             // ボタンの追加
-            addArrangedSubview(button)
-            ratingButtons.append(button)
+            addArrangedSubview(view)
+            ratingView.append(view)
         }
-        updateButtonSelectionStates()
-    }
-    
-    private func updateButtonSelectionStates() {
-        for (index, button) in ratingButtons.enumerated() {
-
-            button.isSelected = index < rating
+        
+        for _ in rating..<starCount {
+            // ラベルの作成
+            let view = UIImageView()
             
-            // アクセシビリティ用
-            let hintString: String?
-            if rating == index + 1 {
-                hintString = "Tap to reset the rating to zero."
-            } else {
-                hintString = nil
-            }
+            // 画像をセット
+            view.image = emptyStar
             
-            let valueString: String
-            switch (rating) {
-            case 0:
-                valueString = "No rating set."
-            case 1:
-                valueString = "1 star set."
-            default:
-                valueString = "\(rating) stars set."
-            }
+            // 制約追加
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
+            view.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
             
-            button.accessibilityHint = hintString
-            button.accessibilityValue = valueString
+            // ボタンの追加
+            addArrangedSubview(view)
+            ratingView.append(view)
         }
+        
     }
     
 }

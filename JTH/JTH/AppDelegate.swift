@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Ponshukan
+//  JTH
 //
-//  Created by MSTK on 2018/03/22.
+//  Created by MSTK on 2018/04/17.
 //  Copyright © 2018年 MSTK. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

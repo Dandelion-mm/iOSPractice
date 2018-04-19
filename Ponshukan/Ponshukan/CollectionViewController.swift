@@ -10,6 +10,8 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+
+
 protocol CollectionViewControllerDelegate: NSObjectProtocol {
     func tapImage(image: UIImage, text: String)
 }
@@ -23,6 +25,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -37,6 +40,10 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         // UIImageをUIImageViewのimageとして設定
         imageView.image = cellImage
         
+        // 画像を丸く
+        imageView.layer.cornerRadius = 60
+        imageView.layer.masksToBounds = true
+        
         // Tag番号を使ってLabelのインスタンス生成
         let label = brandCell.contentView.viewWithTag(2) as! UILabel
         label.text = brands[indexPath.row]
@@ -50,11 +57,28 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         // [indexPath.row] から画像名を探し、UImageを設定
         let selectedImage = UIImage(named: brands[indexPath.row])
         let selectedText = brands[indexPath.row]
-        if selectedImage != nil {
-            delegate?.tapImage(image: selectedImage!, text: selectedText)
-            navigationController?.popViewController(animated: true)
+        
+        let alertController = UIAlertController(title: selectedText, message: "アルコール度数　15度" + "\n" + "精米歩合 　　　 65%", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let addAction = UIAlertAction(title: "登録する", style: UIAlertActionStyle.default) { (action: UIAlertAction) in
+            if selectedImage != nil {
+                self.delegate?.tapImage(image: selectedImage!, text: selectedText)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
+        alertController.addAction(addAction)
+        
+        let imageView = UIImageView(frame: CGRect(x: 75,y: -105,width: 120,height: 120))
+        imageView.image = selectedImage
+        
+        // 画像を丸く
+        imageView.layer.cornerRadius = 60
+        imageView.layer.masksToBounds = true
+        
+        alertController.view.addSubview(imageView)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

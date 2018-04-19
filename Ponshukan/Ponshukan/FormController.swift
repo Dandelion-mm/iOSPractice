@@ -13,14 +13,17 @@ class FormController: UIViewController, CollectionViewControllerDelegate {
     
     @IBOutlet weak var sakeBrand: UILabel!
     @IBOutlet weak var sakeImage: UIButton!
-    @IBOutlet weak var commentView: UITextView!
-    @IBOutlet weak var drinkNumber: UILabel!
+    @IBOutlet weak var commentView: UITextField!
+    @IBOutlet weak var addButton: UIButton!
     
     
-    var counter = 0
+    @IBOutlet weak var control: RatingControl!
     
     // SakeList一覧を持ってくる
     var orgSakeList: [SakeData] = []
+    
+    // Ratingを持ってくる
+    var rating: Int = 0
     
     func tapImage(image: UIImage, text: String) {
         self.navigationItem.title = text
@@ -36,10 +39,43 @@ class FormController: UIViewController, CollectionViewControllerDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)]
         
         // コメントフィールド設定
-        commentView.layer.borderColor = UIColor.gray.cgColor
-        commentView.layer.borderWidth = 1.0
-        commentView.layer.cornerRadius = 10.0
-        commentView.layer.masksToBounds = true
+//        commentView.layer.borderColor = UIColor.white.cgColor
+//        commentView.layer.borderWidth = 1.0
+//        commentView.layer.cornerRadius = 10.0
+//        commentView.layer.masksToBounds = true
+        
+        for button in control.ratingButtons {
+            button.addTarget(self, action: #selector(tapped(_:)), for: .touchUpInside)
+        }
+        
+        // コメント
+        commentView.attributedPlaceholder = NSAttributedString(string: "ほんのり甘め、次も飲みたい味だ。魚料理に合いそう。", attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray])
+        
+        // 画像
+        sakeImage.layer.cornerRadius = 75
+        sakeImage.layer.masksToBounds = true
+        
+        // 画像を丸く
+        addButton.layer.cornerRadius = 29
+        addButton.layer.masksToBounds = true
+        
+    }
+    
+    @objc func tapped(_ button: UIButton) {
+        guard let index = control.ratingButtons.index(of: button) else {
+            fatalError("The Button, \(button), is not in the ratingButtons array: \(control.ratingButtons)")
+        }
+        
+        // 選択された星の数を計算
+        let selectedRating = index + 1
+        
+        if selectedRating == rating {
+            // 同じボタン押したら星の数を０にする
+            rating = 0
+        } else {
+            // 選択した星の数にする
+            rating = selectedRating
+        }
         
     }
     
@@ -55,22 +91,31 @@ class FormController: UIViewController, CollectionViewControllerDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    
+    /*
     @IBAction func tapAddbutton(_ sender: Any) {
+        subButton.isEnabled = true
+        subButton.isHidden = false
         counter += 1
         drinkNumber.text = String(counter)
+        addButton.isEnabled = false
+        addButton.isHidden = true
     }
+    */
     
-    
+    /*
     @IBAction func tapSubButton(_ sender: Any) {
         if (counter == 0) {
             counter = 0
         }else {
             counter -= 1
+            addButton.isEnabled = true
+            addButton.isHidden = false
+            subButton.isEnabled = false
+            subButton.isHidden = true
         }
         drinkNumber.text = String(counter)
     }
-    
+    */
     
     @IBAction func tapSaveButton(_ sender: Any) {
         
@@ -79,14 +124,14 @@ class FormController: UIViewController, CollectionViewControllerDelegate {
         
         // 時間処理
         let f = DateFormatter()
-        f.dateStyle = .long
-        f.timeStyle = .none
+        f.dateStyle = .none
+        f.timeStyle = .short
         let now = Date()
 
-        // 各種データ保存　評価保存まだ
+        // 各種データ保存
         sakeData.sakeBrand = sakeBrand.text!
+        sakeData.sakeRating = rating
         sakeData.sakeComment = commentView.text!
-        sakeData.drinkNumber = counter
         sakeData.saveTime = f.string(from: now)
         
         // 挿入

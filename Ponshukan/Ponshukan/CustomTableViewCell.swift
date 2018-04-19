@@ -13,7 +13,6 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var sakeImage: UIImageView!
     @IBOutlet weak var sakeBrand: UILabel!
     @IBOutlet weak var latestDate: UILabel!
-    @IBOutlet weak var drinkNumber: UILabel!
     @IBOutlet weak var sakeRating: RatingViewController!
     
 

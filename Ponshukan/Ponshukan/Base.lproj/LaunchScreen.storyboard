@@ -18,24 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="toa-nj-ZAS">
-                                <rect key="frame" x="-69" y="77" width="512" height="512"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ponshu" translatesAutoresizingMaskIntoConstraints="NO" id="9rT-U4-MKR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hQm-ru-3O5">
+                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="U2B-0T-Qn0"/>
+                                    <constraint firstAttribute="width" constant="200" id="duP-6C-yrM"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="toa-nj-ZAS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Fs7-c1-JgG"/>
-                            <constraint firstItem="toa-nj-ZAS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aZH-gW-cGV"/>
+                            <constraint firstItem="9rT-U4-MKR" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="5O0-oF-nW8"/>
+                            <constraint firstItem="9rT-U4-MKR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="EcH-U0-8x0"/>
+                            <constraint firstItem="9rT-U4-MKR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VmR-mt-n09"/>
+                            <constraint firstItem="hQm-ru-3O5" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hbu-Dh-Q4Z"/>
+                            <constraint firstItem="9rT-U4-MKR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mkM-P1-uYm"/>
+                            <constraint firstItem="hQm-ru-3O5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tT3-cc-jIL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="512" height="512"/>
+        <image name="logo" width="1024" height="1024"/>
+        <image name="ponshu" width="1125" height="2001"/>
     </resources>
 </document>

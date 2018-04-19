@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable class RatingControl: UIStackView {
     
     // プロパティ
-    private var ratingButtons = [UIButton]()
+    var ratingButtons = [UIButton]()
     
     var rating = 0 {
         didSet {
@@ -61,6 +61,9 @@ import UIKit
             // 選択した星の数にする
             rating = selectedRating
         }
+        
+
+        
     }
     
     // ボタンのセット

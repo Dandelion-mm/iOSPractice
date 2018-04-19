@@ -14,7 +14,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,6 +72,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         // StoryBoardで指定したsakeCell識別子を利用して再利用可能なセルを取得
         let cell = tableView.dequeueReusableCell(withIdentifier: "SakeCell", for: indexPath) as! CustomTableViewCell
+        
+        // 背景色の変更
+        cell.contentView.backgroundColor = UIColor.black
 
         // 行番号に合ったSakeの情報を取得
         let sakeData = sakeList[indexPath.row]
@@ -88,11 +90,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.sakeImage?.image = UIImage(named: "no_image")
         }
         
-        // セルのラベルに回数をセット
-        cell.drinkNumber?.text = String(sakeData.drinkNumber) + "回"
+        // 画像を丸く
+        cell.sakeImage.layer.cornerRadius = 48
+        cell.sakeImage.layer.masksToBounds = true
         
         // セルのラベルに日付をセット
         cell.latestDate?.text = sakeData.saveTime
+        
+        cell.sakeRating.rating = sakeData.sakeRating
         
         return cell
 
@@ -128,9 +133,6 @@ class SakeData: NSObject, NSCoding {
     // コメント
     var sakeComment: String?
     
-    // 飲んだ回数
-    var drinkNumber: Int = 0
-    
     // 登録時間
     var saveTime: String?
     
@@ -144,7 +146,6 @@ class SakeData: NSObject, NSCoding {
         sakeBrand = aDecoder.decodeObject(forKey: "sakeBrand")as? String
         sakeRating = aDecoder.decodeInteger(forKey: "sakeRating")
         sakeComment = aDecoder.decodeObject(forKey: "sakeComment")as? String
-        drinkNumber = aDecoder.decodeInteger(forKey: "drinkNumber")
         saveTime = aDecoder.decodeObject(forKey: "saveTime")as? String
         guard let rating = aDecoder.decodeObject(forKey: "sakeRating")as? Int else { return }
         sakeRating = rating
@@ -155,7 +156,6 @@ class SakeData: NSObject, NSCoding {
         aCoder.encode(sakeBrand, forKey: "sakeBrand")
         aCoder.encode(sakeRating, forKey: "sakeRating")
         aCoder.encode(sakeComment, forKey: "sakeComment")
-        aCoder.encode(drinkNumber, forKey: "drinkNumber")
         aCoder.encode(saveTime, forKey: "saveTime")
     }
     

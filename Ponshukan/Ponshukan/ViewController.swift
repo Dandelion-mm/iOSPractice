@@ -34,8 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
+
         // SakeListの読み込み
         let userDefaults = UserDefaults.standard
         if let storedSakeList = userDefaults.object(forKey: "sakeList") as? Data {
@@ -136,6 +135,9 @@ class SakeData: NSObject, NSCoding {
     // 登録時間
     var saveTime: String?
     
+    // 登録日
+    var saveDate: String?
+    
     
     // Constract
     override init(){
@@ -147,6 +149,7 @@ class SakeData: NSObject, NSCoding {
         sakeRating = aDecoder.decodeInteger(forKey: "sakeRating")
         sakeComment = aDecoder.decodeObject(forKey: "sakeComment")as? String
         saveTime = aDecoder.decodeObject(forKey: "saveTime")as? String
+        saveDate = aDecoder.decodeObject(forKey: "saveTime")as? String
         guard let rating = aDecoder.decodeObject(forKey: "sakeRating")as? Int else { return }
         sakeRating = rating
     }
@@ -157,6 +160,7 @@ class SakeData: NSObject, NSCoding {
         aCoder.encode(sakeRating, forKey: "sakeRating")
         aCoder.encode(sakeComment, forKey: "sakeComment")
         aCoder.encode(saveTime, forKey: "saveTime")
+        aCoder.encode(saveTime, forKey: "saveDate")
     }
     
 }

@@ -123,18 +123,22 @@ class FormController: UIViewController, CollectionViewControllerDelegate {
         let sakeData = SakeData()
         
         // 時間処理
-        let f = DateFormatter()
-        f.dateStyle = .none
-        f.timeStyle = .short
+        let ftime = DateFormatter()
+        ftime.dateStyle = .none
+        ftime.timeStyle = .short
+        let fdate = DateFormatter()
+        fdate.dateStyle = .short
+        fdate.timeStyle = .none
         let now = Date()
 
         // 各種データ保存
         sakeData.sakeBrand = sakeBrand.text!
         sakeData.sakeRating = rating
         sakeData.sakeComment = commentView.text!
-        sakeData.saveTime = f.string(from: now)
+        sakeData.saveTime = ftime.string(from: now)
+        sakeData.saveDate = fdate.string(from: now)
         
-        // 挿入
+        // 挿入（配列の先頭に）
         orgSakeList.insert(sakeData, at: 0)
         
         let userDefaults = UserDefaults.standard
@@ -144,6 +148,7 @@ class FormController: UIViewController, CollectionViewControllerDelegate {
         userDefaults.set(data, forKey: "sakeList")
         userDefaults.synchronize()
         
+        // 一つ前のページに戻る（自分を閉じる）
         navigationController?.popViewController(animated: false)
         
         /* アラート
